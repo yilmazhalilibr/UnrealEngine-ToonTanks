@@ -25,6 +25,11 @@ ABasePawn::ABasePawn()
 	ProjectTileSpawnPoint = CreateDefaultSubobject<USceneComponent>(TEXT("Spawn Point"));
 	ProjectTileSpawnPoint->SetupAttachment(TurretMesh);
 }
+void ABasePawn::HandleDestruction()
+{
+	
+}
+
 void ABasePawn::RotateTurret(FVector LookAtTarget)
 {
 	FVector ToTarget = LookAtTarget - TurretMesh->GetComponentLocation();

@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
+#include "ToonTanksGameMode.h"
 #include "HealthComponent.generated.h"
 
 
@@ -28,6 +29,9 @@ private:
 
 	UFUNCTION()
 	void DamageTaken(AActor* DamageActor, float Damage , const UDamageType* DamageType, class AController* Instigator, AActor* DamageCauser);
+
+	AToonTanksGameMode* ToonTanksGameMode;
+
 public:	
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;

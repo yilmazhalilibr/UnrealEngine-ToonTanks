@@ -27,10 +27,17 @@ void ATank::SetupPlayerInputComponent(UInputComponent *PlayerInputComponent)
 
     PlayerInputComponent->BindAction(TEXT("Fire"),IE_Pressed,this,&ATank::Fire);
 }
+void ATank::HandleDestruction()
+{
+    Super::HandleDestruction();
+    SetActorHiddenInGame(true);
+    SetActorTickEnabled(false);
+}
+
 void ATank::BeginPlay()
 {
     Super::BeginPlay();
-    PlayerControllerRef = Cast<APlayerController>(GetController());
+    TankPlayerController = Cast<APlayerController>(GetController());
     
         DrawDebugSphere(GetWorld(),
         GetActorLocation() + FVector(0.f,0.f,200.f),
@@ -45,10 +52,10 @@ void ATank::Tick(float DeltaTime)
 {
     Super::Tick(DeltaTime);
 
-    if(PlayerControllerRef)
+    if(TankPlayerController)
     {
         FHitResult HitResult;
-        PlayerControllerRef->GetHitResultUnderCursor(ECollisionChannel::ECC_Visibility,false,HitResult);
+        TankPlayerController->GetHitResultUnderCursor(ECollisionChannel::ECC_Visibility,false,HitResult);
 
         RotateTurret(HitResult.ImpactPoint);
     }
