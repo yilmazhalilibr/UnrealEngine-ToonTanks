@@ -6,6 +6,7 @@
 #include "GameFramework/ProjectileMovementComponent.h"
 #include "GameFramework/DamageType.h"
 #include "Kismet/GameplayStatics.h"	
+#include "Particles/ParticleSystemComponent.h"
 
 // Sets default values
 AProjectile::AProjectile()
@@ -16,9 +17,13 @@ AProjectile::AProjectile()
 	ProjectileMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Projectile Mesh"));
 	RootComponent = ProjectileMesh;
 
+
 	ProjectileMovementComponent = CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("Projectile Movement Component"));
 	ProjectileMovementComponent->MaxSpeed = 1300.f;
 	ProjectileMovementComponent->InitialSpeed = 1300.f;
+
+	TrialParticles = CreateDefaultSubobject<UParticleSystemComponent>(TEXT("Smoke Trial"));
+	TrialParticles->SetupAttachment(RootComponent);
 }
 
 // Called when the game starts or when spawned
