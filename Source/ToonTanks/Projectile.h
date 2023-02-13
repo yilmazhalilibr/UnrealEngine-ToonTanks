@@ -37,6 +37,7 @@ private:
 	UPROPERTY(VisibleAnywhere , Category="Combat")
 	class UParticleSystemComponent* TrialParticles;
 
+	
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
